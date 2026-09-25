@@ -26,7 +26,7 @@
   --font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, monospace;
   --maxw: 1180px;
   --scale: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='42' height='24' viewBox='0 0 42 24'%3E%3Cpath d='M0 24a21 21 0 0 1 21-21A21 21 0 0 1 42 24' fill='none' stroke='%23c9a227' stroke-width='.9' opacity='.22'/%3E%3Cpath d='M-21 24a21 21 0 0 1 21-21A21 21 0 0 1 21 24M21 24a21 21 0 0 1 21-21A21 21 0 0 1 63 24' fill='none' stroke='%237a9e5a' stroke-width='.9' opacity='.20'/%3E%3C/svg%3E");
-  --feather: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140' viewBox='0 0 140 140'%3E%3Cg fill='none' stroke='%23e8d48a' stroke-linecap='round' opacity='.16'%3E%3Cpath stroke-width='.8' d='M32 108c7-26 16-48 32-74'/%3E%3Cpath stroke-width='.4' d='M32 108c9-18 20-32 40-44M32 108c2-20 9-40 20-58M32 108c14-16 30-28 50-32'/%3E%3C/g%3E%3Cg fill='none' stroke='%239dbf7a' stroke-linecap='round' opacity='.13' transform='translate(70 6) rotate(-28)'%3E%3Cpath stroke-width='.7' d='M32 108c7-26 16-48 32-74'/%3E%3Cpath stroke-width='.35' d='M32 108c9-18 20-32 40-44M32 108c2-20 9-40 20-58'/%3E%3C/g%3E%3C/svg%3E");
+  --feather: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='96' viewBox='0 0 96 96'%3E%3Cg fill='none' stroke='%23e8d48a' stroke-linecap='round' opacity='.32'%3E%3Cpath stroke-width='1' d='M18 82c6-22 14-40 28-62'/%3E%3Cpath stroke-width='.55' d='M18 82c8-14 18-26 34-36M18 82c1-18 7-36 16-52M18 82c12-12 26-22 44-26'/%3E%3C/g%3E%3Cg fill='none' stroke='%23b5d08a' stroke-linecap='round' opacity='.26' transform='translate(48 4) rotate(-26)'%3E%3Cpath stroke-width='.9' d='M18 82c6-22 14-40 28-62'/%3E%3Cpath stroke-width='.5' d='M18 82c8-14 18-26 34-36M18 82c1-18 7-36 16-52'/%3E%3C/g%3E%3C/svg%3E");
   color-scheme: dark;
 }
 * { box-sizing: border-box; }
@@ -49,8 +49,8 @@ body {
 .surface-matte,
 section[style*="--surface"] {
   background-color: var(--surface);
-  background-image: var(--feather), var(--scale);
-  background-size: 140px 140px, 42px 24px;
+  background-image: var(--feather);
+  background-size: 96px 96px;
 }
 img { max-width: 100%; display: block; }
 a { color: var(--gold-bright); text-decoration: none; }
