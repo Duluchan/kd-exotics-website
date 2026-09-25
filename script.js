@@ -43,18 +43,41 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Contact form: friendly placeholder handling until a real form backend is wired up
+  // Contact form: posts to the private contact relay, which saves the message and emails it to KD Exotics
+  const FORM_ENDPOINT = 'https://okniyuargfizzdbuvhos.supabase.co/functions/v1/contact-relay';
   const form = document.getElementById('contact-form');
   if (form) {
-    form.addEventListener('submit', (e) => {
-      if (form.dataset.wired === 'true') return; // let a real endpoint handle it
+    const note = document.getElementById('form-note');
+    const btn = form.querySelector('button[type="submit"]');
+    const show = (msg) => { if (note) { note.hidden = false; note.textContent = msg; } };
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
-      const note = document.getElementById('form-note');
-      if (note) {
-        note.hidden = false;
-        note.textContent = "This form isn't connected to an inbox yet — once it is, messages sent here will land in your email.";
+      if (form.querySelector('[name="_honey"]')?.value) return; // bot
+      const f = form.elements;
+      const name = f['name'].value.trim();
+      const email = f['email'].value.trim();
+      const interest = f['interest'].value;
+      const message = f['message'].value.trim();
+      if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
+      try {
+        const res = await fetch(FORM_ENDPOINT, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify({
+            name, email, topic: interest, message,
+            _honey: f['_honey'] ? f['_honey'].value : '',
+            page: location.href
+          })
+        });
+        const data = await res.json().catch(() => ({}));
+        if (!res.ok || !data.ok) throw new Error(data.error || res.status);
+        form.reset();
+        show("Thanks. Your message is in our inbox and we'll write back.");
+      } catch (err) {
+        show("That didn't send. Please try again in a minute.");
+      } finally {
+        if (btn) { btn.disabled = false; btn.textContent = 'Send'; }
       }
-      form.reset();
     });
   }
 });
